@@ -1,6 +1,6 @@
 from tools import *
 import pygame
-#HEEY
+
 from entity import *
 from tools import *
 from player import *
