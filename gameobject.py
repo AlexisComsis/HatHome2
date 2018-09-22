@@ -3,9 +3,6 @@ import pygame
 
 class Game_object:
 
-    defaultimagelist = []
-    defaultimagelist.append(pygame.image.load("Assets\Image\defaultimg.png").convert_alpha())
-
     """
     All object in the game
     """

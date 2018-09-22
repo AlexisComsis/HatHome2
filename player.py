@@ -56,9 +56,9 @@ class Player(Game_object):
     def animation(self, spr1, spr2):
         Player.timer1 += 1
 
-        if Player.timer1 <= 10:
+        if Player.timer1 <= 15:
             self.imageup = self.bank_image[spr1]
-        elif Player.timer1 <= 21:
+        elif Player.timer1 <= 31:
             self.imageup = self.bank_image[spr2]
         else:
             Player.timer1 = 0

@@ -22,10 +22,8 @@ while run:
     pygame.Surface.fill(window, (0, 0, 0))
     background.be(window)
     home.be(window, keys, mouse, click)
-    the_bugman.be(window)
-    the_bugman2.be(window)
-    the_bugman3.be(window)
-    the_bugman4.be(window)
+
+
 
 
     #Update Display
