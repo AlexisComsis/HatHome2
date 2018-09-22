@@ -20,8 +20,9 @@ while run:
 
     #Controlkeys
     pygame.Surface.fill(window, (0, 0, 0))
-    background.be(window, keys)
+    background.be(window)
     home.be(window, keys, mouse, click)
+    the_bugman.be(window)
 
     #Update Display
     pygame.display.update()

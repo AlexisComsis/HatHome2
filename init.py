@@ -1,18 +1,18 @@
 from tools import *
 import pygame
 #HEEY
-from entity import *
-from tools import *
-from player import *
-from background import *
+
 
 pygame.mixer.pre_init(44100, -16, 2, 2048)  #bug soundp
 pygame.init()
 
 window = pygame.display.set_mode((tools.w0, tools.h0), pygame.FULLSCREEN)
 
-from textbox import *
+from entity import *
+from gameobject import *
 from load import *
+from player import *
+
 # Set icon
 pygame.display.set_icon(icon)
 
@@ -28,5 +28,9 @@ pygame.mixer.music.set_volume(4)
 clock = pygame.time.Clock()
 
 # Create player
-home = Player(750, 400, spriteplayer[0], 100, 50, spriteplayer)
-background = Background(5, background, 0, 0)
+
+p = []
+p.append(background)
+home = Player(10, 5, spriteplayer[0], spriteplayer, 900, 480)
+background = Entity(background, p, 0, 0)
+the_bugman = Entity(Game_object.defaultimagelist[0], Game_object.defaultimagelist, 500, 800)

@@ -2,7 +2,7 @@ from gameobject import *
 
 class Entity(Game_object):
 
-    def __init__(self, x, y, imageup, sprite=Game_object.defaultimg):        #imageon represent basic image
-        Entity.__init__(self, x, y, imageup)
-
-    def movemap():
+    list_object_inrun = []
+    def __init__(self, imageup, bank_image, x, y):
+        Game_object.__init__(self, imageup, bank_image, x, y)
+        Entity.list_object_inrun.append(self)
