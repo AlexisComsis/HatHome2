@@ -23,6 +23,10 @@ while run:
     background.be(window)
     home.be(window, keys, mouse, click)
     the_bugman.be(window)
+    the_bugman2.be(window)
+    the_bugman3.be(window)
+    the_bugman4.be(window)
+
 
     #Update Display
     pygame.display.update()
