@@ -1,5 +1,8 @@
 from gameobject import *
 from movemap import *
+from entity import *
+from tools import *
+import numpy as np
 
 class Player(Game_object):
 
@@ -8,11 +11,44 @@ class Player(Game_object):
         self.speed = speed
         self.hp_limit = hp_limit
         self.hp = hp_limit
+        self.width = self.imageup.get_width()
+        self.height = self.imageup.get_height()
 
 
     def be(self, window, keys, mouse, click):
         self.control(keys)
         window.blit(self.imageup,(self.x, self.y))
+
+    def collision(self):
+        pixellist = []
+        pixellistp = []
+
+        #entity
+        for object in Entity.list_object_inrun:
+            for xpixel in np.arange(object.x, object.width + object.x):
+                pixellist.append((xpixel, object.y))
+                pixellist.append((xpixel, object.y + object.height))
+            for ypixel in np.arange(object.y, object.height + object.y):
+                pixellist.append((object.x, ypixel))
+                pixellist.append((object.x + object.width, ypixel))
+
+        #player
+
+        for xpixel in np.arange(self.x, self.width + self.x):
+            pixellistp.append((xpixel, self.y))
+            pixellistp.append((xpixel, self.y + self.height))
+        for ypixel in np.arange(self.y, self.height + self.y):
+            pixellistp.append((self.x, ypixel))
+            pixellistp.append((self.x + self.width, ypixel))
+        print (pixellist)
+        #test
+        for pixel in pixellist:
+            for pixelp in pixellistp:
+                if (pixel[0]-1 < pixelp[0] and pixel[0]+1 > pixelp[0]) and (pixel[1]-1 < pixelp[1] and pixel[1]+1 > pixelp[1]):
+                    return(False)
+        return(True)
+
+
 
 
 
@@ -22,12 +58,16 @@ class Player(Game_object):
             if keys[pygame.K_a]:
                 Movemap.upleft(self.speed)
                 self.upleft()
+                if self.collision():
+                    Movemap.downright(self.speed)
+                    #suite
             elif keys[pygame.K_d]:
                 Movemap.upright(self.speed)
                 self.upright()
             else:
                 Movemap.up(self.speed)
                 self.up()
+
 
         #DOWN
         elif keys[pygame.K_s]:
@@ -41,15 +81,18 @@ class Player(Game_object):
                 Movemap.down(self.speed)
                 self.down()
 
+
         #LEFT
         elif keys[pygame.K_a]:
             Movemap.left(self.speed)
             self.left()
 
+
         #RIGHT
         elif keys[pygame.K_d]:
             Movemap.right(self.speed)
             self.right()
+
 
 
     timer1 = 0
