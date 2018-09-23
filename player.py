@@ -22,29 +22,30 @@ class Player(Game_object):
     def collision(self):
         pixellist = []
         pixellistp = []
-
+        
         #entity
+
         for object in Entity.list_object_inrun:
-            for xpixel in np.arange(object.x, object.width + object.x):
+            for xpixel in range(object.x, object.width + object.x):
                 pixellist.append((xpixel, object.y))
                 pixellist.append((xpixel, object.y + object.height))
-            for ypixel in np.arange(object.y, object.height + object.y):
+            for ypixel in range(object.y, object.height + object.y):
                 pixellist.append((object.x, ypixel))
                 pixellist.append((object.x + object.width, ypixel))
 
         #player
 
-        for xpixel in np.arange(self.x, self.width + self.x):
+        for xpixel in range(self.x, self.width + self.x):
             pixellistp.append((xpixel, self.y))
             pixellistp.append((xpixel, self.y + self.height))
-        for ypixel in np.arange(self.y, self.height + self.y):
+        for ypixel in range(self.y, self.height + self.y):
             pixellistp.append((self.x, ypixel))
             pixellistp.append((self.x + self.width, ypixel))
-        print (pixellist)
+
         #test
         for pixel in pixellist:
             for pixelp in pixellistp:
-                if (pixel[0]-1 < pixelp[0] and pixel[0]+1 > pixelp[0]) and (pixel[1]-1 < pixelp[1] and pixel[1]+1 > pixelp[1]):
+                if pixel == pixelp:
                     return(False)
         return(True)
 
@@ -58,15 +59,19 @@ class Player(Game_object):
             if keys[pygame.K_a]:
                 Movemap.upleft(self.speed)
                 self.upleft()
-                if self.collision():
+                if self.collision() == False:
                     Movemap.downright(self.speed)
                     #suite
             elif keys[pygame.K_d]:
                 Movemap.upright(self.speed)
                 self.upright()
+                if self.collision() == False:
+                    Movemap.downleft(self.speed)
             else:
                 Movemap.up(self.speed)
                 self.up()
+                if self.collision() == False:
+                    Movemap.down(self.speed)
 
 
         #DOWN
@@ -74,24 +79,34 @@ class Player(Game_object):
             if keys[pygame.K_a]:
                 Movemap.downleft(self.speed)
                 self.downleft()
+                if self.collision() == False:
+                    Movemap.upright(self.speed)
             elif keys[pygame.K_d]:
                 Movemap.downright(self.speed)
                 self.downright()
+                if self.collision() == False:
+                    Movemap.upleft(self.speed)
             else:
                 Movemap.down(self.speed)
                 self.down()
+                if self.collision() == False:
+                    Movemap.up(self.speed)
 
 
         #LEFT
         elif keys[pygame.K_a]:
             Movemap.left(self.speed)
             self.left()
+            if self.collision() == False:
+                Movemap.right(self.speed)
 
 
         #RIGHT
         elif keys[pygame.K_d]:
             Movemap.right(self.speed)
             self.right()
+            if self.collision() == False:
+                Movemap.left(self.speed)
 
 
 

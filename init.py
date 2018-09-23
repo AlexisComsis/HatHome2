@@ -31,6 +31,6 @@ clock = pygame.time.Clock()
 
 p = []
 p.append(background)
-home = Player(10, 5, spriteplayer[0], spriteplayer, 900, 480)
+home = Player(10, 50, spriteplayer[0], spriteplayer, 900, 480)
 #buggman = Player(10, 5, spritebuggman[0], spritebuggman, 800, 480)
 background = Entity(background, p, 0, 0)

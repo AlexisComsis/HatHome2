@@ -22,7 +22,7 @@ while run:
     pygame.Surface.fill(window, (0, 0, 0))
     background.be(window)
     home.be(window, keys, mouse, click)
-    
+
 
 
 
